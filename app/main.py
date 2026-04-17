@@ -52,6 +52,7 @@ async def lifespan(app: FastAPI):
         "app": settings.app_name,
         "version": settings.app_version,
         "environment": settings.environment,
+    }))
     await asyncio.sleep(0.1)  # simulate init
     _is_ready = True
     yield
