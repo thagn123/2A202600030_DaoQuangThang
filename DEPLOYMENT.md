@@ -1,7 +1,7 @@
 # Deployment Information
 
 ## Public URL
-https://2a202600030daoquangthang-production.up.railway.app (Placeholder)
+https://2a202600030daoquangthang-production.up.railway.app
 
 ## Platform
 Railway
