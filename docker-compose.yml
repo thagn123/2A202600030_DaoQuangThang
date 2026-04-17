@@ -1,0 +1,24 @@
+version: '3.8'
+
+services:
+  agent:
+    build: .
+    environment:
+      - APP_NAME=AI Agent Group Prod
+      - ENVIRONMENT=production
+      - AGENT_API_KEY=group-secret-key-123
+      - PORT=8000
+    deploy:
+      replicas: 3
+    ports:
+      - "8000:8000"
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8000/health"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  redis:
+    image: redis:alpine
+    ports:
+      - "6379:6379"
