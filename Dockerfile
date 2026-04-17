@@ -13,21 +13,27 @@ RUN apt-get update && apt-get install -y curl && rm -rf /var/lib/apt/lists/*
 
 # Create non-root user
 RUN useradd -m appuser
-USER appuser
 WORKDIR /app
 
-# Copy installed dependencies
-COPY --from=builder /root/.local /home/appuser/.local
+# Ensure proper permissions and path
 ENV PATH=/home/appuser/.local/bin:$PATH
+ENV PYTHONPATH=/app
 
-# Copy code
-COPY app/ app/
-COPY utils/ utils/
+# Copy installed dependencies and adjust ownership
+COPY --from=builder --chown=appuser:appuser /root/.local /home/appuser/.local
+
+# Copy code and adjust ownership
+COPY --chown=appuser:appuser app/ app/
+COPY --chown=appuser:appuser utils/ utils/
+
+# Switch to non-root user
+USER appuser
 
 EXPOSE 8000
 
-# Health check
-HEALTHCHECK --interval=30s --timeout=5s --start-period=5s --retries=3 \
+# Health check (pointing to the internal port)
+HEALTHCHECK --interval=30s --timeout=15s --start-period=10s --retries=3 \
   CMD curl -f http://localhost:8000/health || exit 1
 
-CMD ["python", "-m", "app.main"]
+# Using python -m uvicorn ensures it uses the installed package in the path
+CMD ["python", "-m", "uvicorn", "app.main:app", "--host", "0.0.0.0", "--port", "8000"]

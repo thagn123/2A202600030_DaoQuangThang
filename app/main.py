@@ -40,6 +40,8 @@ logging.basicConfig(
 logger = logging.getLogger(__name__)
 
 START_TIME = time.time()
+logger.info(f"--- Application started at {datetime.now(timezone.utc)} ---")
+logger.info(f"--- Config: ENV={settings.environment}, PORT={settings.port} ---")
 _is_ready = False
 _request_count = 0
 _error_count = 0
