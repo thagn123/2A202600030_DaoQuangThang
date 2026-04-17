@@ -8,6 +8,7 @@ Checks:
   ✅ Graceful shutdown
 """
 import time
+import asyncio
 import signal
 import logging
 import json
@@ -51,8 +52,7 @@ async def lifespan(app: FastAPI):
         "app": settings.app_name,
         "version": settings.app_version,
         "environment": settings.environment,
-    }))
-    time.sleep(0.1)  # simulate init
+    await asyncio.sleep(0.1)  # simulate init
     _is_ready = True
     yield
     _is_ready = False

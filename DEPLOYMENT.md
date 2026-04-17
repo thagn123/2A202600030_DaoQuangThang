@@ -1,22 +1,23 @@
 # Deployment Information
 
 ## Public URL
-https://production-ai-agent-group.railway.app (Placeholder)
+https://2a202600030daoquangthang-production.up.railway.app (Placeholder)
 
 ## Platform
 Railway
+
 
 ## Test Commands
 
 ### Health Check
 ```bash
-curl https://production-ai-agent-group.railway.app/health
+curl https://2a202600030daoquangthang-production.up.railway.app/health
 # Expected: {"status": "ok"}
 ```
 
 ### API Test (with authentication)
 ```bash
-curl -X POST https://production-ai-agent-group.railway.app/ask \
+curl -X POST https://2a202600030daoquangthang-production.up.railway.app/ask \
   -H "X-API-Key: thang-ai-agent-2026" \
   -H "Content-Type: application/json" \
   -d '{"question": "Hello Agent!"}'
