@@ -17,14 +17,14 @@ curl https://production-ai-agent-group.railway.app/health
 ### API Test (with authentication)
 ```bash
 curl -X POST https://production-ai-agent-group.railway.app/ask \
-  -H "X-API-Key: group-secret-key-123" \
+  -H "X-API-Key: thang-ai-agent-2026" \
   -H "Content-Type: application/json" \
   -d '{"question": "Hello Agent!"}'
 ```
 
 ## Environment Variables Set
 - PORT=8000
-- AGENT_API_KEY=group-secret-key-123
+- AGENT_API_KEY=thang-ai-agent-2026
 - ENVIRONMENT=production
 - APP_NAME="AI Agent Production"
 
